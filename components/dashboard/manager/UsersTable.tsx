@@ -9,14 +9,10 @@ import {
     Virtualizer,
     EmptyState,
     Chip,
-    Checkbox,
     Spinner,
     SearchField,
-    Button,
-    toast,
-    AlertDialog
 } from "@heroui/react";
-import { Inbox, ChevronUp, Trash2 } from "lucide-react";
+import { Inbox, ChevronUp } from "lucide-react";
 import { fetchUsers } from "@/../actions/userActions";
 import EditUserModal from "./EditUserModal";
 

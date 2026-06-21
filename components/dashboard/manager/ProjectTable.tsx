@@ -61,7 +61,7 @@ export default function ProjectsTable() {
 
     const hasSearchFilter = Boolean(filterValue);
 
-    // 1. Filtraggio Memorizzato richiesto ma gestito da IA
+    // 1. Filtraggio Memoizzato richiesto ma gestito da IA
     const filteredItems = useMemo(() => {
         let filteredProjects = [...projects];
         if (hasSearchFilter) {
@@ -116,7 +116,7 @@ export default function ProjectsTable() {
         const project = projects.find((p) => p.id === key);
         if (project) setSelectedProject(project);
     };
-    //La gestione della table é stata gestita attraverso la documentazione HeroUI come per le altre componenti del dashboard
+    //La gestione della table è stata eseguita tramite la documentazione HeroUI come per le altre componenti del dashboard
     // seguita la documentazione e rifattorizzato per eventuali correzioni suggerite dall'IA
 
     // Top Content (Barra di ricerca in alto a sinistra)

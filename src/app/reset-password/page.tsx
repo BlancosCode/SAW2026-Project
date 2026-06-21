@@ -5,9 +5,9 @@ import { Button } from "@heroui/react";
 import { authClient } from "@/../lib/auth-client";
 import { useSearchParams, useRouter } from "next/navigation";
 import { KeyRound, CheckCircle2 } from "lucide-react";
+
+
 //generato interamente con gemini e controllato punto per punto
-
-
 function ResetPasswordForm() {
     const searchParams = useSearchParams();
     const router = useRouter();

@@ -1,6 +1,6 @@
 "use client";
 
-//Gli edit profile (sia di freelancer che delle company) sono stati generati embrionariamente e poi sistemati 
+//Gli edit profile (sia di freelancer che delle company) sono stati sviluppati embrionariamente e poi revisionati e corretti 
 //con l'aiuto dell'IA tramite i dati degli specifici utenti e le documentazioni di heroui
 
 import React, { useState, useEffect } from "react";

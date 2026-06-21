@@ -41,7 +41,6 @@ export function SendResetPasswordButton() {
                 setTimeout(() => setSuccess(false), 5000);
             }
         } catch (err: unknown) {
-            // Type Narrowing per l'errore al posto di "any"
             const errorMessage = err instanceof Error ? err.message : String(err);
             console.error("Errore imprevisto nel bottone di reset:", errorMessage);
         } finally {
@@ -53,7 +52,6 @@ export function SendResetPasswordButton() {
         <Button
             isPending={loading}
             onPress={handleSendResetEmail}
-            // Se ha successo mostriamo un feedback verde temporaneo, altrimenti il tuo rosso RAW
             className={`text-white font-medium shadow-sm hover:cursor-pointer rounded-full py-2 px-4 mt-4 mb-4 transition-colors ${success ? "bg-green-600 hover:bg-green-700" : "bg-red-900 hover:bg-red-700"
                 }`}
         >

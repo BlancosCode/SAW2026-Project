@@ -66,11 +66,14 @@ export default function FreelancerProjects() {
 
     if (projects.length === 0) {
         return (
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 text-center animate-in fade-in duration-300">
-                <FolderKanban className="mx-auto text-gray-300 mb-4" size={64} />
-                <h2 className="text-xl font-bold text-gray-700">Nessun Progetto Assegnato</h2>
-                <p className="text-gray-500 mt-2 font-medium">Al momento non ci sono progetti assegnati al tuo account.</p>
-            </div>
+            <>
+                <PushNotificationManager />
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 text-center animate-in fade-in duration-300">
+                    <FolderKanban className="mx-auto text-gray-300 mb-4" size={64} />
+                    <h2 className="text-xl font-bold text-gray-700">Nessun Progetto Assegnato</h2>
+                    <p className="text-gray-500 mt-2 font-medium">Al momento non ci sono progetti assegnati al tuo account.</p>
+                </div>
+            </>
         );
     }
 

@@ -1,17 +1,16 @@
-// app/dashboard/manager/CreateUserForm.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import type { Key } from "@heroui/react";
 import { Button, ListBox, FieldError, Form, Input, Label, TextField, Select, TextArea, CloseButton, toast, Description, ComboBox, Chip } from "@heroui/react";
 import { createNewUser, getUniqueMacroCategories } from "@/../actions/userActions";
-import { UserRoundPlus, BugPlay, Trash2 } from "lucide-react";
+import { UserRoundPlus } from "lucide-react";
 
 // --- COMPONENTI SELECTION SPOSTATI FUORI ---
 interface SelectionProps {
     selectedRole: Key | null;
     setSelectedRole: (role: Key | null) => void;
-    labelStyle: string; // Passiamo lo stile della label come prop
+    labelStyle: string;
 }
 interface SelectionExperienceProps {
     selectedExperience: Key | null;
@@ -103,8 +102,6 @@ export default function CreateUserForm() {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [comboInput, setComboInput] = useState("");
     const [availableCategories, setAvailableCategories] = useState<string[]>([]);
-    const [isGenerating, setIsGenerating] = useState(false);
-    const [isDeleting, setIsDeleting] = useState(false);
     const [selectedExperience, setSelectedExperience] = useState<Key | null>("newbie");
 
     useEffect(() => {
