@@ -27,7 +27,7 @@ const privateKey = process.env.VAPID_PRIVATE_KEY;
 if (publicKey && privateKey) {
     webpush.setVapidDetails(vapidEmail, publicKey, privateKey);
 } else {
-    console.warn("⚠️ Chiavi VAPID mancanti. Le notifiche Push non funzioneranno.");
+    console.warn("Chiavi VAPID mancanti. Le notifiche Push non funzioneranno.");
 }
 
 // Helper per tipizzare gli errori

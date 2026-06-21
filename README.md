@@ -22,21 +22,51 @@ npm install
 
 
 4. **Configurazione delle Variabili d'Ambiente:** Inserire il file `.env` (fornito in allegato alla presente consegna, come da specifiche del progetto) nella cartella root. Tale file contiene le chiavi di configurazione essenziali per la connessione al database MongoDB, al provider di autenticazione (Better Auth) e allo storage cloud (Cloudflare R2) per la gestione dei file multimediali.
-5. Avviare il server di sviluppo tramite il comando:
+5. **Avvio in Modalità Sviluppo (Standard):**
+Per ispezionare il codice e navigare l'interfaccia in modalità sviluppo, eseguire:
 ```bash
 npm run dev
 
 ```
 
 
-6. L'applicazione sarà accessibile tramite browser all'indirizzo: `http://localhost:3000`.
-7. **Requisiti PWA:** L'applicativo rispetta i vincoli richiesti: è installabile nativamente sul dispositivo, è in grado di gestire l'assenza di rete tramite service worker (fallback offline) ed è integrato con l'API per le notifiche Push.
+L'applicazione sarà accessibile all'indirizzo: `http://localhost:3000`.
 
 ---
 
-## 2. Credenziali per la Valutazione (Dati di Test)
+## 2. Modalità di Collaudo PWA e Notifiche Push (Importante)
 
-Per consentire al docente di ispezionare integralmente le funzionalità dell'applicativo e il sistema di autorizzazione (Role-Based Access Control), sono stati preconfigurati i seguenti account di test:
+Per valutare correttamente i requisiti avanzati del progetto (Installabilità della PWA, funzionamento del Service Worker, caching offline e Notifiche Push), è **strettamente necessario** simulare l'ambiente di produzione. In modalità sviluppo (`npm run dev`), le librerie PWA disabilitano i Service Worker per prevenire conflitti di caching.
+
+**Procedura per il collaudo della PWA:**
+
+1. Interrompere l'eventuale server di sviluppo in esecuzione.
+2. Compilare l'applicazione generando la build di produzione e il file `sw.js`:
+```bash
+npm run build
+
+```
+
+
+3. Avviare il server di produzione:
+```bash
+npm run start
+
+```
+
+
+
+**Test delle Funzionalità:**
+
+* **Installazione PWA:** Accedendo all'indirizzo `http://localhost:3000` con un browser compatibile (es. Chrome), comparirà l'icona di installazione nativa nella barra degli indirizzi. In alternativa, è possibile verificarne l'attivazione tramite i *Developer Tools -> Application -> Manifest / Service Workers*.
+* **Notifiche Push:** 1. Effettuare l'accesso con un account Freelancer o Azienda e cliccare su "Attiva Ora" nel pannello delle Notifiche Push, fornendo il consenso al browser.
+2. Per simulare la ricezione reale, è possibile accedere con l'account Manager da una finestra in incognito e assegnare un nuovo progetto a quell'utente: la notifica verrà triggerata automaticamente dal server e recapitata al dispositivo.
+
+---
+
+## 3. Credenziali per la Valutazione (Dati di Test)
+
+Per consentire l'ispezione integrale delle funzionalità dell'applicativo e del sistema di autorizzazione (Role-Based Access Control), sono stati preconfigurati i seguenti account di test:
 
 * **Ruolo Manager (Amministratore di Sistema)**
 * **Email:** `managersaw@exam.com`
@@ -54,19 +84,19 @@ Per consentire al docente di ispezionare integralmente le funzionalità dell'app
 
 ---
 
-## 3. Architettura e Navigazione per Ruolo
+## 4. Architettura e Navigazione per Ruolo
 
 La piattaforma instrada automaticamente l'utente verso una dashboard dedicata in base ai privilegi associati al suo token di sessione.
 
-### 3.1. Dashboard Manager (`/dashboard/manager`)
+### 4.1. Dashboard Manager (`/dashboard/manager`)
 
 Interfaccia di amministrazione globale. Utilizza una navigazione ancorata per gestire flussi di dati ad alta densità:
 
 * **Progetti Interni:** Tabella interattiva (dotata di filtri di ricerca e ordinamento client-side) per il monitoraggio dei progetti. Consente la creazione di nuove commesse, l'assegnazione alle aziende clienti e la selezione dei team di freelancer.
 * **Creazione Utenti:** Modulo per la registrazione autorizzata di nuovi account (Freelancer, Aziende o Manager). L'operazione sincronizza in tempo reale il provider di identità e il database non relazionale.
-* **Database Utenti:** Componente a lista virtualizzata per l'ispezione completa dell'utenza. Consente l'eliminazione massiva dei record e l'aggiornamento dettagliato dei metadati di ogni singolo profilo (inclusa la personalizzazione cromatica dell'interfaccia).
+* **Database Utenti:** Componente a lista virtualizzata per l'ispezione completa dell'utenza. Consente l'eliminazione dei record e l'aggiornamento dettagliato dei metadati di ogni singolo profilo (inclusa la personalizzazione cromatica dell'interfaccia).
 
-### 3.2. Dashboard Freelancer (`/dashboard/freelancer`)
+### 4.2. Dashboard Freelancer (`/dashboard/freelancer`)
 
 Interfaccia dedicata ai professionisti. Implementa una navigazione asincrona a schede (Tabs) per evitare ricaricamenti di pagina:
 
@@ -74,7 +104,7 @@ Interfaccia dedicata ai professionisti. Implementa una navigazione asincrona a s
 * **Portfolio:** Sezione in cui il professionista può caricare fino a un massimo di 5 progetti espositivi. Le immagini caricate usufruiscono dell'ottimizzazione dinamica del framework per massimizzare le prestazioni (Core Web Vitals).
 * **Progetti e Incarichi:** Visualizzazione in sola lettura degli incarichi assegnati dal Manager, comprensiva di calcolo algoritmico della quota di compenso netto spettante al singolo collaboratore.
 
-### 3.3. Dashboard Company (`/dashboard/company`)
+### 4.3. Dashboard Company (`/dashboard/company`)
 
 Interfaccia dedicata alle aziende clienti:
 
